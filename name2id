@@ -28,8 +28,6 @@ def fix_lastname_first_comma(full_name):
   else:
     return full_name
 
-# if continue with this then all for search by only lastname
-# and remove middle initial if doing full name search
 def remove_middle_initial(full_name):
   parts = full_name.split()
   cnt = len(parts)
@@ -42,7 +40,7 @@ def remove_middle_initial(full_name):
     return full_name
 
 def format_sponsor(s):
-  # extract last name from sponsor
+  # extract last name from sponsor (taken from dossier.py)
   names = list(filter(lambda x: x not in ['Jr.', 'II', 'III', 'IV'], s.split()))
   if len(names) == 2:
     if len(names[1]) > 1: return names[1]
@@ -93,16 +91,18 @@ if __name__ == "__main__":
   if (name == '' or ' -h' in ' ' + name or '--help' in name):
     print_help()
     sys.exit(0)
+
   # cluster dependent
   cols = ['NETID/EMAIL', 'NAME', 'DEPT', 'POSITION', 'SPONSOR', 'PROB.']
   userfile = "/scratch/gpfs/jdh4/gpustat/cached_users.csv"
-  import socket
+  from socket import gethostname
   from pathlib import Path
-  if 'tiger' in socket.gethostname() and Path(userfile).exists():
+  if 'tiger' in gethostname() and Path(userfile).exists():
     df = pd.read_csv(userfile, header=0)
   else:
     df = getent_passwd()
     cols.remove('POSITION')
+
   # clean and merge
   df.NAME = df.NAME.apply(fix_lastname_first_comma)
   df['NO_MIDDLE'] = df.NAME.apply(remove_middle_initial)
