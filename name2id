@@ -1,4 +1,8 @@
 #!/usr/licensed/anaconda3/2020.2/bin/python
+
+# post issues at https://github.com/jdh4/name2id
+# or write to halverson@princeton.edu
+
 import sys
 sys.path = list(filter(lambda p: p.startswith("/usr"), sys.path))
 sys.path.append('/tigress/jdh4/python-utilities/fuzzywuzzy')
@@ -41,6 +45,7 @@ def remove_middle_initial(full_name):
 
 def format_sponsor(s):
   # extract last name from sponsor (taken from dossier.py)
+  if pd.isna(s): return ''
   names = list(filter(lambda x: x not in ['Jr.', 'II', 'III', 'IV'], s.split()))
   if len(names) == 2:
     if len(names[1]) > 1: return names[1]
