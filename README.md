@@ -22,11 +22,13 @@ $ getent passwd | wc -l
 $ ls /home/| wc -l
 2043
 
+-- della --
 $ getent passwd | wc -l
 2178
 $ ls /home | wc -l
 1253
 
+-- traverse --
 $ getent passwd | wc -l
 84
 $ ls /home | wc -l
