@@ -38,3 +38,17 @@ $ ls /home | wc -l
 ```
 diff -y <(ls /home | sort | uniq) <(getent passwd | cut -d':' -f 1 | sort | uniq)
 ```
+
+```
+$ getent passwd | cut -d ':' -f 7 | sort | uniq
+/bin/bash
+/bin/csh
+/bin/sh
+/bin/sync
+/bin/tcsh
+/bin/zsh
+/sbin/halt
+/sbin/nologin
+/sbin/shutdown
+/usr/bin/zsh
+```
