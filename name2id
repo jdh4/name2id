@@ -76,7 +76,7 @@ def getent_passwd():
   if 'adroit' in gethostname():
     flnm = "/home/jdh4/bin/combined_getent.csv"
   else:
-    flnm = "/tigress/jdh4/python-devel/lft/combined_getent.csv"
+    flnm = "/tigress/jdh4/python-devel/lft/cron/combined_getent.csv"
   if Path(flnm).is_file():
     df = pd.read_csv(flnm, header=0)
     df.columns = ['NETID', 'NAME']
@@ -122,7 +122,7 @@ if __name__ == "__main__":
   userfile = "/scratch/gpfs/jdh4/gpustat/cached_users.csv"
   from socket import gethostname
   from pathlib import Path
-  if 'tiger' in gethostname() and Path(userfile).is_file():
+  if 'tiger************' in gethostname() and Path(userfile).is_file():
     df = pd.read_csv(userfile, header=0)
   else:
     df = getent_passwd()
