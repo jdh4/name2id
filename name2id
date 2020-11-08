@@ -118,15 +118,17 @@ if __name__ == "__main__":
 
   # cluster dependent
   cols = ['NETID/EMAIL', 'NAME', 'DEPT', 'POSITION', 'SPONSOR', 'PROB.']
-  cols = ['NAME', 'NETID/EMAIL', 'POSITION', 'PROB.']
+  #cols = ['NAME', 'NETID/EMAIL', 'POSITION', 'PROB.']
   userfile = "/scratch/gpfs/jdh4/gpustat/cached_users.csv"
   from socket import gethostname
   from pathlib import Path
-  if 'tiger************' in gethostname() and Path(userfile).is_file():
+  if 'tiger' in gethostname() and Path(userfile).is_file():
     df = pd.read_csv(userfile, header=0)
   else:
     df = getent_passwd()
     cols.remove('POSITION')
+    cols.remove('DEPT')
+    cols.remove('SPONSOR')
 
   # clean and merge
   #df.NAME = df.NAME.apply(fix_lastname_first_comma)
