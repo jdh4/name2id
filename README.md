@@ -1,10 +1,18 @@
 # name2id
 
-## Installation
+## How to use?
 
-Clone the fuzzywuzzy directory (do not install since it is pure Python). Correct path to fuzzywuzzy in name2id if necessary.
+Add this line to your `~/.bashrc` file on each cluster (Adroit, Della, Perseus, Tiger, Tigressdata and Traverse):
 
-The git repo is `/tigress/jdh4/python-devel/name2id` where development should be done. The executable should be copied to `/tigress/jdh4/python-utilities` where it can be called.
+```bash
+alias lft='/home/jdh4/bin/name2id'
+```
+
+Then look at the help menu:
+
+```
+$ name2id -h
+```
 
 ## getent passwd vs. ls /home
 
