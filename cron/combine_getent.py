@@ -89,7 +89,7 @@ for f in files:
   tmp = pd.read_csv(f, header=None, delimiter=':')
   tmp['cluster'] = 'adroit' if 'adroit' in f else 'other'
   df = df.append(tmp)
-df.columns = ['netid', 'sym', 'uid', 'gid', 'name_sponsor', \
+df.columns = ['NETID', 'sym', 'uid', 'gid', 'name_sponsor', \
               'home', 'login', 'cluster']
 
 # next lines used for understanding the raw values in the dataframe
@@ -107,7 +107,7 @@ df.columns = ['netid', 'sym', 'uid', 'gid', 'name_sponsor', \
 #no_shell = ['/sbin/halt', '/sbin/nologin', '/sbin/nolgin', '/sbin/shutdown', '/bin/sync']
 #df = df[~df.login.isin(no_shell)]
 
-df = df[['netid', 'name_sponsor', 'home', 'cluster']]
+df = df[['NETID', 'name_sponsor', 'home', 'cluster']]
 df = df[df.name_sponsor.str.contains(',', na=False) & df.home.str.contains('home', na=False)]
 df.drop(columns='home', inplace=True)
 msk1 = ~df.name_sponsor.str.contains('pniguest', regex=False)
@@ -119,18 +119,18 @@ df.drop_duplicates(inplace=True)
 #print(sorted(df[df.cluster == "other"].name_sponsor.apply(lambda x: x.split(",")[1]).unique()))
 
 # add count (cnt) field
-df['cnt'] = df.netid.apply(lambda x: df[df.netid == x].shape[0])
+df['cnt'] = df.NETID.apply(lambda x: df[df.NETID == x].shape[0])
 
 # remove adroit entry when second entry exists
 msk2 = (df.cnt > 1) & (~df.cluster.str.contains('adroit', regex=False))
 df = df[(df.cnt == 1) | msk2]
 
 # assume records are equal in a sense across clusters
-df = df[['netid', 'name_sponsor']].drop_duplicates('netid', keep='first')
+df = df[['NETID', 'name_sponsor']].drop_duplicates('NETID', keep='first')
 
 df['NDS'] = df.name_sponsor.apply(extract_name)
-df['fullname'] = df.NDS.apply(lambda x: x[0])
-df['dept']     = df.NDS.apply(lambda x: x[1])
-df['sponsor']  = df.NDS.apply(lambda x: x[2])
-df = df[['netid', 'fullname', 'dept', 'sponsor']].sort_values(by='netid', ascending=True)
+df['NAME'] = df.NDS.apply(lambda x: x[0])
+df['DEPT']     = df.NDS.apply(lambda x: x[1])
+df['SPONSOR']  = df.NDS.apply(lambda x: x[2])
+df = df[['NETID', 'NAME', 'DEPT', 'SPONSOR']].sort_values(by='NETID', ascending=True)
 df.to_csv('combined_getent.csv', index=False)

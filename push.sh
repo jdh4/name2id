@@ -1,4 +1,12 @@
 #!/bin/bash
-cp name2id ../../python-utilities
-scp name2id jdh4@adroit.princeton.edu:/home/jdh4/bin
-scp /tigress/jdh4/python-devel/lft/cron/combined_getent.csv jdh4@adroit.princeton.edu:/home/jdh4/bin
+
+# tiger
+cp name2id /home/jdh4/bin
+
+# other clusters
+for cluster in adroit della perseus tigressdata traverse
+do
+  echo ${cluster}
+  scp name2id jdh4@${cluster}.princeton.edu:/home/jdh4/bin
+  echo
+done
