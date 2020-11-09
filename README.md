@@ -1,6 +1,6 @@
 # name2id
 
-## How to use?
+## How to use it?
 
 Add this line to your `~/.bashrc` file on each cluster (Adroit, Della, Perseus, Tiger, Tigressdata and Traverse):
 
@@ -24,11 +24,18 @@ Examples:
        $ name2id irene
 ```
 
-# How does it work?
+## How does it work?
 
-`getent passwd` is ran on every cluster every four hours M-F. This output is combined into a master file. That file is sent back out to each head node. The software using the fuzzywuzzy package to do the fuzzy string matching. Only the top 7 results are presented along with their probabilities.
+`getent passwd` is ran on the necessary head hodes to capture all RC users. every cluster every four hours M-F. This output is combined into a master file. That file is sent back out to each head node. The software using the fuzzywuzzy package to do the fuzzy string matching. Only the top 7 results are presented along with their probabilities.
 
 It is only useful when you are looking for the NetID of someone who already has an RC acount. There are roughly 3400 users in the master file.
+
+## When is it useful?
+
+It is useful when:
+
++ account requests only mention the PI by name
++ RCU/DCU users submit a ticket using their non-PU email
 
 ## getent passwd vs. ls /home
 
