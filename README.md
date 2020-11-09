@@ -60,6 +60,14 @@ $ ls /home | wc -l
 ```
 
 ```
+(11/9) -- traverse --
+$ getent passwd | wc -l
+2327
+$ ls /home | wc -l
+160
+```
+
+```
 diff -y <(ls /home | sort | uniq) <(getent passwd | cut -d':' -f 1 | sort | uniq)
 ```
 
