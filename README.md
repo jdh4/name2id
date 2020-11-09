@@ -12,7 +12,23 @@ Then look at the help menu:
 
 ```
 $ name2id -h
+
+Given the full or partial name of an RC user, name2id will find the
+corresponding NetID. Fuzzy string matching is used so severe misspellings
+of the name still result in a match.
+
+Examples:
+       $ name2id anatolie spitz
+       $ name2id debeneti
+       $ name2id red maxell
+       $ name2id irene
 ```
+
+# How does it work?
+
+`getent passwd` is ran on every cluster every four hours M-F. This output is combined into a master file. That file is sent back out to each head node. The software using the fuzzywuzzy package to do the fuzzy string matching. Only the top 7 results are presented along with their probabilities.
+
+It is only useful when you are looking for the NetID of someone who already has an RC acount. There are roughly 3400 users in the master file.
 
 ## getent passwd vs. ls /home
 
