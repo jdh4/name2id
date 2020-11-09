@@ -47,7 +47,7 @@ $ name2id anatolie spitz
 
 ## How does it work?
 
-`getent passwd` is ran on the necessary head nodes (`tigressdata` and others) to capture all RC users. This output is combined into a master file which is stored on each head node. `name2id` uses the fuzzywuzzy package to do the fuzzy string matching. The top seven most likely results are presented along with their probabilities. The master file is updated three times per day M-F.
+`getent passwd` is ran on the necessary head nodes (`tigressdata` and others) to capture all RC users. This output is combined into a master file which is stored on each head node. The master file is updated three times per day M-F. `name2id` uses the `fuzzywuzzy` package to do the fuzzy string matching. The top seven most likely results are presented along with their probabilities.
 
 
 
