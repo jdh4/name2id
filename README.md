@@ -5,7 +5,7 @@
 Add this line to your `~/.bashrc` file on each cluster (Adroit, Della, Perseus, Tiger, Tigressdata and Traverse):
 
 ```bash
-alias lft='/home/jdh4/bin/name2id'
+alias name2id='/home/jdh4/bin/name2id'
 ```
 
 Then look at the help menu:
