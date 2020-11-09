@@ -11,17 +11,20 @@ from fuzzywuzzy import process
 
 def print_help():
   print("")
-  print("NAME2ID")
-  print("=======")
-  print("name2id converts a name to a netid using fuzzy string matching so")
-  print("bad misspellings are tolerated. This command is based on \"getent passwd\"")
-  print("so the name must already be associated with an RC account.")
+  print("Given the full or partial name of an RC user, name2id will find the")
+  print("corresponding NetID. Fuzzy string matching is used so severe misspellings")
+  print("of the name still result in a match.")
+
+  #print("name2id converts a full or partial name to a NetID. Fuzzy string matching")
+  #print("is used so severe misspellings are tolerated. This command is based on")
+  #print("\"getent passwd\" so the name must already be associated with an RC account.")
   print("")
   print("Examples:")
-  print("\t$ name2id karolena row-redwood")
-  print("\t$ name2id anatolie spitz")
-  print("\t$ name2id debenetti")
-  print("\t$ name2id irene")
+  spacer = " " * 7
+  print(f"{spacer}$ name2id anatolie spitz")
+  print(f"{spacer}$ name2id debeneti")
+  print(f"{spacer}$ name2id red maxell")
+  print(f"{spacer}$ name2id irene")
   print("")
 
 def fix_lastname_first_comma(full_name):
@@ -61,7 +64,7 @@ def format_sponsor(s):
     return s
 
 def print_dataframe(df_str):
-  width = max([len(row) for row in df_str])
+  width = max([len(row) for row in df_str]) + 1
   print('')
   print(df_str[0])
   print(''.join(['='] * width))
@@ -111,7 +114,7 @@ if __name__ == "__main__":
       name = parts[0] + ' ' + parts[2]
 
   # cluster dependent
-  cols = ['NETID/EMAIL', 'NAME', 'DEPT', 'POSITION', 'SPONSOR', 'PROB.']
+  cols = ['NETID/EMAIL', 'NAME', 'DEPT', 'POSITION', 'SPONSOR', 'PROB']
   userfile = "/scratch/gpfs/jdh4/gpustat/cached_users.csv"
   if 'tigerxxx' in gethostname() and Path(userfile).is_file():
     df = pd.read_csv(userfile, header=0)
@@ -123,15 +126,16 @@ if __name__ == "__main__":
   df['NO_MIDDLE'] = df.NAME.apply(remove_middle_initial)
   choices = list(df.NO_MIDDLE.values)
   matches = process.extract(name, choices, limit=7)
-  matches_df = pd.DataFrame(matches, columns=['NO_MIDDLE', 'PROB.'])
-  matches_df['PROB.'] = 0.01 * matches_df['PROB.']
+  matches_df = pd.DataFrame(matches, columns=['NO_MIDDLE', 'PROB'])
+  matches_df['PROB'] = 0.01 * matches_df['PROB']
   df = pd.merge(df, matches_df, how='right', on='NO_MIDDLE')
   df = df.drop_duplicates() # needed for bill
   df['NETID/EMAIL'] = df.NETID.apply(lambda u: u + '@princeton.edu')
   df.SPONSOR = df.SPONSOR.apply(format_sponsor)
+  df.NAME = df.NAME.apply(remove_middle_initial)
   if df.empty:
     print('No results were found.')
   else:
-    df = df[cols].sort_values(by='PROB.', ascending=False)
+    df = df[cols].sort_values(by='PROB', ascending=False)
     df_str = df.fillna('').to_string(index=False)
     print_dataframe(df_str.split('\n'))
