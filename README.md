@@ -53,62 +53,7 @@ $ name2id anatolie spitz
 
 ## When is it useful?
 
-It is useful when:
+`name2id` is particualrly useful when:
 
 + account requests only mention the PI by name
 + RCU/DCU users submit a ticket using their non-PU email
-
-## getent passwd vs. ls /home
-
-(8/22)
-```
--- tiger --
-$ getent passwd | wc -l
-2179
-$ ls /home | wc -l
-971
-
--- tigressdata --
-$ getent passwd | wc -l
-2134
-$ ls /home/| wc -l
-2043
-
--- della --
-$ getent passwd | wc -l
-2178
-$ ls /home | wc -l
-1253
-
--- traverse --
-$ getent passwd | wc -l
-84
-$ ls /home | wc -l
-147
-```
-
-```
-(11/9) -- traverse --
-$ getent passwd | wc -l
-2327
-$ ls /home | wc -l
-160
-```
-
-```
-diff -y <(ls /home | sort | uniq) <(getent passwd | cut -d':' -f 1 | sort | uniq)
-```
-
-```
-$ getent passwd | cut -d ':' -f 7 | sort | uniq
-/bin/bash
-/bin/csh
-/bin/sh
-/bin/sync
-/bin/tcsh
-/bin/zsh
-/sbin/halt
-/sbin/nologin
-/sbin/shutdown
-/usr/bin/zsh
-```
