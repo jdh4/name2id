@@ -28,11 +28,28 @@ Examples:
        $ name2id irene
 ```
 
+The output of the first example is shown below:
+
+```
+$ name2id anatolie spitz
+
+            NETID/EMAIL                NAME   DEPT          SPONSOR  PROB
+==========================================================================
+  anatoly@princeton.edu  Anatoly Spitkovsky  Astro       Spitkovsky  0.69
+   nhdiaz@princeton.edu        Natalie Diaz  Astro              Cen  0.69
+ alevshin@princeton.edu     Anatoly Levshin                          0.62
+ amorozov@princeton.edu     Anatoli Morozov    MAE         Suckewer  0.62
+   astatt@princeton.edu       Antonia Statt  PRISM  Panagiotopoulos  0.59
+    licao@princeton.edu              Li Cao                          0.57
+    nlust@princeton.edu      Nathaniel Lust  Astro           Lupton  0.57
+==========================================================================
+```
+
 ## How does it work?
 
-`getent passwd` is ran on the necessary head hodes to capture all RC users. every cluster every four hours M-F. This output is combined into a master file. That file is sent back out to each head node. The software using the fuzzywuzzy package to do the fuzzy string matching. Only the top 7 results are presented along with their probabilities.
+`getent passwd` is ran on the necessary head nodes (`tigressdata` and others) to capture all RC users. This output is combined into a master file which is stored on each head node. `name2id` uses the fuzzywuzzy package to do the fuzzy string matching. The top 7 most likely results are presented along with their probabilities. The master file is updated three times per day on M-F.
 
-It is only useful when you are looking for the NetID of someone who already has an RC acount. There are roughly 3400 users in the master file.
+
 
 ## When is it useful?
 
