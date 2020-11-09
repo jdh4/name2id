@@ -3,6 +3,7 @@
 cd /tigress/jdh4/python-devel/name2id/cron
 
 # pull in output of "getent passwd" from each cluster to here
+# della, tiger and traverse are covered by tigressdata but included for safety
 for cluster in adroit della perseus tigressdata traverse
 do
   ssh    jdh4@${cluster}.princeton.edu "getent passwd > /home/jdh4/bin/cron/${cluster}_getent.txt 2>/dev/null"

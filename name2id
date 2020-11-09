@@ -14,10 +14,6 @@ def print_help():
   print("Given the full or partial name of an RC user, name2id will find the")
   print("corresponding NetID. Fuzzy string matching is used so severe misspellings")
   print("of the name still result in a match.")
-
-  #print("name2id converts a full or partial name to a NetID. Fuzzy string matching")
-  #print("is used so severe misspellings are tolerated. This command is based on")
-  #print("\"getent passwd\" so the name must already be associated with an RC account.")
   print("")
   print("Examples:")
   spacer = " " * 7
@@ -73,7 +69,6 @@ def print_dataframe(df_str):
   print('')
 
 def getent_passwd():
-  #from socket import gethostname
   flnm = "/home/jdh4/bin/cron/combined_getent.csv"
   if Path(flnm).is_file():
     return pd.read_csv(flnm, header=0)
@@ -113,14 +108,9 @@ if __name__ == "__main__":
     if len(parts[1]) == 1 or (len(parts[1]) == 2 and parts[1].endswith('.')):
       name = parts[0] + ' ' + parts[2]
 
-  # cluster dependent
-  cols = ['NETID/EMAIL', 'NAME', 'DEPT', 'POSITION', 'SPONSOR', 'PROB']
-  userfile = "/scratch/gpfs/jdh4/gpustat/cached_users.csv"
-  if 'tigerxxx' in gethostname() and Path(userfile).is_file():
-    df = pd.read_csv(userfile, header=0)
-  else:
-    df = getent_passwd()
-    cols.remove('POSITION')
+  # get entries
+  cols = ['NETID/EMAIL', 'NAME', 'DEPT', 'SPONSOR', 'PROB']
+  df = getent_passwd()
 
   # clean and merge
   df['NO_MIDDLE'] = df.NAME.apply(remove_middle_initial)
