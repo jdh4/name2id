@@ -53,6 +53,6 @@ $ name2id anatolie spitz
 
 `name2id` is particualrly useful when:
 
-+ account requests mention the PI by name but don't include email
++ account requests mention the PI by name but don't include email address
 + RCU/DCU users submit a ticket using their non-PU email
 + you need a user's NetID but don't know how to spell their name
