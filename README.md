@@ -24,7 +24,7 @@ of the name (or partial name) still result in a match.
 Examples:
        $ name2id anatolie spitz
        $ name2id debeneti
-       $ name2id red maxell
+       $ name2id red maxel
        $ name2id irene
 ```
 
