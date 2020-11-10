@@ -1,8 +1,8 @@
 # name2id
 
-Given the full or partial name of an RC user, `name2id` will find the
+Given the name of an RC user, `name2id` will find the
 corresponding NetID. Fuzzy string matching is used so severe misspellings
-of the name still result in a match.
+of the name (or partial name) still result in a match.
 
 ## How to use it?
 
