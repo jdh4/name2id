@@ -19,7 +19,7 @@ $ name2id -h
 
 Given the full or partial name of an RC user, name2id will find the
 corresponding NetID. Fuzzy string matching is used so severe misspellings
-of the name still result in a match.
+of the name (or partial name) still result in a match.
 
 Examples:
        $ name2id anatolie spitz
