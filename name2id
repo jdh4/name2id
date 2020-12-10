@@ -59,13 +59,14 @@ def format_sponsor(s):
   else:
     return s
 
-def print_dataframe(df_str):
+def print_dataframe(df_str, x, y):
   width = max([len(row) for row in df_str]) + 1
   print('')
   print(df_str[0])
   print(''.join(['='] * width))
   print('\n'.join(df_str[1:]))
   print(''.join(['='] * width))
+  print(f" Top {x} of {y} entries")
   print('')
 
 def getent_passwd():
@@ -112,10 +113,13 @@ if __name__ == "__main__":
   cols = ['NETID/EMAIL', 'NAME', 'DEPT', 'SPONSOR', 'PROB']
   df = getent_passwd()
 
+  num_show = 7
+  num_entries = df.shape[0]
+
   # clean and merge
   df['NO_MIDDLE'] = df.NAME.apply(remove_middle_initial)
   choices = list(df.NO_MIDDLE.values)
-  matches = process.extract(name, choices, limit=7)
+  matches = process.extract(name, choices, limit=num_show)
   matches_df = pd.DataFrame(matches, columns=['NO_MIDDLE', 'PROB'])
   matches_df['PROB'] = 0.01 * matches_df['PROB']
   df = pd.merge(df, matches_df, how='right', on='NO_MIDDLE')
@@ -128,4 +132,4 @@ if __name__ == "__main__":
   else:
     df = df[cols].sort_values(by='PROB', ascending=False)
     df_str = df.fillna('').to_string(index=False)
-    print_dataframe(df_str.split('\n'))
+    print_dataframe(df_str.split('\n'), num_show, num_entries)
