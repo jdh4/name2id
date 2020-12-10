@@ -56,4 +56,4 @@ $ name2id anatolie spitz
 
 + account requests mention the PI by name but don't include their email address
 + RCU/DCU users submit a ticket using their non-PU email
-+ you need a user's NetID but don't know how to spell their name
++ you need a user's NetID but don't know how exactly to spell their name
