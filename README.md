@@ -43,6 +43,7 @@ $ name2id anatolie spitz
     licao@princeton.edu              Li Cao                          0.57
     nlust@princeton.edu      Nathaniel Lust  Astro           Lupton  0.57
 ==========================================================================
+ Top 7 of 3538 entries
 ```
 
 ## How does it work?
@@ -53,6 +54,6 @@ $ name2id anatolie spitz
 
 `name2id` is particualrly useful when:
 
-+ account requests mention the PI by name but don't include email address
++ account requests mention the PI by name but don't include their email address
 + RCU/DCU users submit a ticket using their non-PU email
 + you need a user's NetID but don't know how to spell their name
