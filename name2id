@@ -19,7 +19,7 @@ def print_help():
   spacer = " " * 7
   print(f"{spacer}$ name2id anatolie spitz")
   print(f"{spacer}$ name2id debeneti")
-  print(f"{spacer}$ name2id red maxell")
+  print(f"{spacer}$ name2id Red Maxell")
   print(f"{spacer}$ name2id irene")
   print("")
 
