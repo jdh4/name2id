@@ -43,7 +43,7 @@ $ name2id anatolie spitz
     licao@princeton.edu              Li Cao                          0.57
     nlust@princeton.edu      Nathaniel Lust  Astro           Lupton  0.57
 ==========================================================================
- Top 7 of 3538 entries
+ Top 7 of 3538 entries as of 1:00 PM on 3/17
 ```
 
 ## How does it work?
