@@ -4,6 +4,8 @@
 # or write to halverson@princeton.edu
 
 import sys
+import os
+from datetime import datetime
 from pathlib import Path
 from socket import gethostname
 import pandas as pd
@@ -66,12 +68,16 @@ def print_dataframe(df_str, x, y):
   print(''.join(['='] * width))
   print('\n'.join(df_str[1:]))
   print(''.join(['='] * width))
-  print(f" Top {x} of {y} entries")
+  print(f" Top {x} of {y} entries{mtime}")
   print('')
 
 def getent_passwd():
+  global mtime
+  mtime = ""
   flnm = "/home/jdh4/bin/cron/combined_getent.csv"
   if Path(flnm).is_file():
+    frmt = " as of %-I:%M %p on %-m/%-d"
+    mtime = datetime.fromtimestamp(os.stat(flnm).st_mtime).strftime(frmt)
     return pd.read_csv(flnm, header=0)
   else:
     print("Master file not found so running getent passwd locally ...")
