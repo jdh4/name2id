@@ -82,7 +82,8 @@ def extract_name(s):
     return [s.split(',')[0], None, None]
 
 files = ['tigressdata_getent.txt', 'adroit_getent.txt', 'della_getent.txt', \
-         'perseus_getent.txt', 'tiger_getent.txt', 'traverse_getent.txt']
+         'perseus_getent.txt', 'tiger_getent.txt', 'traverse_getent.txt', \
+         'stellar-intel_getent.txt']
 
 df = pd.DataFrame()
 for f in files:

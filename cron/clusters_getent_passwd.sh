@@ -4,7 +4,7 @@ cd /tigress/jdh4/python-devel/name2id/cron
 
 # pull in output of "getent passwd" from each cluster to here
 # della, tiger and traverse are covered by tigressdata but included for safety
-for cluster in adroit della perseus tigressdata traverse
+for cluster in adroit della perseus tigressdata traverse stellar-intel
 do
   ssh    jdh4@${cluster}.princeton.edu "getent passwd > /home/jdh4/bin/cron/${cluster}_getent.txt 2>/dev/null"
   scp -q jdh4@${cluster}.princeton.edu:/home/jdh4/bin/cron/${cluster}_getent.txt . 2>/dev/null
@@ -15,7 +15,7 @@ getent passwd > ./tiger_getent.txt 2>/dev/null
 /usr/licensed/anaconda3/2020.7/bin/python combine_getent.py 2>/dev/null
 
 # push out master file to each cluster
-for cluster in adroit della perseus tigressdata traverse
+for cluster in adroit della perseus tigressdata traverse stellar-intel
 do
   scp -q combined_getent.csv jdh4@${cluster}.princeton.edu:/home/jdh4/bin/cron 2>/dev/null
 done
