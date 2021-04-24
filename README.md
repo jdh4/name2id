@@ -31,7 +31,7 @@ Examples:
 The output of the first example is shown below:
 
 ```
-$ name2id anatolie spitz
+$ name2id anatolie spitkosky
 
             NETID/EMAIL                 NAME      DEPT     SPONSOR  PROB
 =========================================================================
