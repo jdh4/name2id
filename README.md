@@ -6,7 +6,7 @@ of the name (or partial name) still result in a match.
 
 ## How to use it?
 
-Add this line to your `~/.bashrc` file on each cluster (Adroit, Della, Perseus, Tiger, Tigressdata and Traverse):
+Add this line to your `~/.bashrc` file on each cluster (Adroit, Della, Stellar, Tiger, Tigressdata and Traverse):
 
 ```bash
 alias name2id='/home/jdh4/bin/name2id'
