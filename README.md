@@ -22,10 +22,10 @@ corresponding NetID. Fuzzy string matching is used so severe misspellings
 of the name (or partial name) still result in a match.
 
 Examples:
-       $ name2id anatolie spitz
+       $ name2id anatolie spitkosky
        $ name2id debeneti
        $ name2id Red Maxel
-       $ name2id irene
+       $ name2id irene -n 10  # show 15 best matches (7 is default)
 ```
 
 The output of the first example is shown below:

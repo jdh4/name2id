@@ -19,10 +19,10 @@ def print_help():
   print("")
   print("Examples:")
   spacer = " " * 7
-  print(f"{spacer}$ name2id anatolie spitz")
+  print(f"{spacer}$ name2id anatolie spitkosky")
   print(f"{spacer}$ name2id debeneti")
   print(f"{spacer}$ name2id Red Maxel")
-  print(f"{spacer}$ name2id irene")
+  print(f"{spacer}$ name2id irene -n 10  # show 15 best matches (7 is default)")
   print("")
 
 def fix_lastname_first_comma(full_name):
@@ -105,6 +105,14 @@ def getent_passwd():
 if __name__ == "__main__":
   # check for help menu
   name = ' '.join(sys.argv[1:])
+  num_show = 7  # default number of results
+  if "-n " in name:
+    items = name.split()
+    num_show = items[items.index("-n") + 1]
+    items.remove("-n")
+    items.remove(num_show)
+    num_show = int(num_show)
+    name = " ".join(items)
   if (name == '' or ' -h' in ' ' + name or '--help' in name):
     print_help()
     sys.exit(0)
@@ -119,7 +127,6 @@ if __name__ == "__main__":
   cols = ['NETID/EMAIL', 'NAME', 'DEPT', 'SPONSOR', 'PROB']
   df = getent_passwd()
 
-  num_show = 7
   num_entries = df.shape[0]
 
   # clean and merge
