@@ -33,17 +33,17 @@ The output of the first example is shown below:
 ```
 $ name2id anatolie spitz
 
-            NETID/EMAIL                NAME   DEPT          SPONSOR  PROB
-==========================================================================
-  anatoly@princeton.edu  Anatoly Spitkovsky  Astro       Spitkovsky  0.69
-   nhdiaz@princeton.edu        Natalie Diaz  Astro              Cen  0.69
- alevshin@princeton.edu     Anatoly Levshin                          0.62
- amorozov@princeton.edu     Anatoli Morozov    MAE         Suckewer  0.62
-   astatt@princeton.edu       Antonia Statt  PRISM  Panagiotopoulos  0.59
-    licao@princeton.edu              Li Cao                          0.57
-    nlust@princeton.edu      Nathaniel Lust  Astro           Lupton  0.57
-==========================================================================
- Top 7 of 3538 entries as of 1:00 PM on 3/17
+            NETID/EMAIL                 NAME      DEPT     SPONSOR  PROB
+=========================================================================
+  anatoly@princeton.edu   Anatoly Spitkovsky     Astro  Spitkovsky  0.89
+   nhdiaz@princeton.edu         Natalie Diaz     Astro         Cen  0.60
+  alexeys@princeton.edu  Alexey Svyatkovskiy      PPPL        Tang  0.59
+  nhickok@princeton.edu     Nathaniel Hickok                        0.59
+ orlovsky@princeton.edu     Natalia Orlovsky       CBE  Brangwynne  0.59
+   csmits@princeton.edu          Celia Smits  Genomics  Shvartsman  0.58
+ itskhoki@princeton.edu        Oleg Itskhoki                        0.58
+=========================================================================
+ Top 7 of 3927 entries as of 5:00 PM on 4/23
 ```
 
 ## How does it work?
