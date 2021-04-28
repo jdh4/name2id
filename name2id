@@ -22,7 +22,7 @@ def print_help():
   print(f"{spacer}$ name2id anatolie spitkosky")
   print(f"{spacer}$ name2id debeneti")
   print(f"{spacer}$ name2id Red Maxel")
-  print(f"{spacer}$ name2id irene -n 10  # show 15 best matches (7 is default)")
+  print(f"{spacer}$ name2id irene -n 15  # show 15 best matches (7 is default)")
   print("")
 
 def fix_lastname_first_comma(full_name):
