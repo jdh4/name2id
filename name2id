@@ -130,6 +130,7 @@ if __name__ == "__main__":
   num_entries = df.shape[0]
 
   # clean and merge
+  df = df[pd.notnull(df.NAME)]  # bug fix on 9/7/2021 (is same needed for df.SPONSOR?)
   df['NO_MIDDLE'] = df.NAME.apply(remove_middle_initial)
   choices = list(df.NO_MIDDLE.values)
   matches = process.extract(name, choices, limit=num_show)
