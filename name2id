@@ -106,6 +106,9 @@ if __name__ == "__main__":
   # check for help menu
   name = ' '.join(sys.argv[1:])
   num_show = 7  # default number of results
+  single = False
+  if "--single" in name:
+    single = True
   if "-n " in name:
     items = name.split()
     num_show = items[items.index("-n") + 1]
@@ -145,5 +148,8 @@ if __name__ == "__main__":
     print('No results were found.')
   else:
     df = df[cols].sort_values(by='PROB', ascending=False)
-    df_str = df.fillna('').to_string(index=False)
-    print_dataframe(df_str.split('\n'), num_show, num_entries)
+    if single:
+      print(df.iloc[0, 0])
+    else:
+      df_str = df.fillna('').to_string(index=False)
+      print_dataframe(df_str.split('\n'), num_show, num_entries)
