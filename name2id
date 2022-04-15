@@ -4,6 +4,10 @@
 # or write to halverson@princeton.edu
 
 import sys
+sys.path.append("/home/jdh4/bin/panes")
+import sponsor  # reuse from lft
+import utils    # reuse from lft
+
 import os
 from datetime import datetime
 from pathlib import Path
@@ -106,9 +110,6 @@ if __name__ == "__main__":
   # check for help menu
   name = ' '.join(sys.argv[1:])
   num_show = 7  # default number of results
-  single = False
-  if "--single" in name:
-    single = True
   if "-n " in name:
     items = name.split()
     num_show = items[items.index("-n") + 1]
@@ -142,14 +143,17 @@ if __name__ == "__main__":
   df = pd.merge(df, matches_df, how='right', on='NO_MIDDLE')
   df = df.drop_duplicates() # needed for bill
   df['NETID/EMAIL'] = df.NETID.apply(lambda u: u + '@princeton.edu')
+
+  from socket import gethostname
+  host = utils.known_hosts[gethostname().lower()]
+  df["SPONSOR"] = df.NETID.apply(lambda x: sponsor.sponsor_per_cluster(x, verbose=False)[host])
+  df.SPONSOR = df.SPONSOR.apply(lambda x: sponsor.sponsor_full_name(x, verbose=False))
   df.SPONSOR = df.SPONSOR.apply(format_sponsor)
+
   df.NAME = df.NAME.apply(remove_middle_initial)
   if df.empty:
     print('No results were found.')
   else:
     df = df[cols].sort_values(by='PROB', ascending=False)
-    if single:
-      print(df.iloc[0, 0])
-    else:
-      df_str = df.fillna('').to_string(index=False)
-      print_dataframe(df_str.split('\n'), num_show, num_entries)
+    df_str = df.fillna('').to_string(index=False)
+    print_dataframe(df_str.split('\n'), num_show, num_entries)
