@@ -146,9 +146,12 @@ if __name__ == "__main__":
 
   from socket import gethostname
   host = utils.known_hosts[gethostname().lower()]
-  df["SPONSOR"] = df.NETID.apply(lambda x: sponsor.sponsor_per_cluster(x, verbose=False)[host])
-  df.SPONSOR = df.SPONSOR.apply(lambda x: sponsor.sponsor_full_name(x, verbose=False))
-  df.SPONSOR = df.SPONSOR.apply(format_sponsor)
+  if host != "adroit":
+    df["SPONSOR"] = df.NETID.apply(lambda x: sponsor.sponsor_per_cluster(x, verbose=False)[host])
+    df.SPONSOR = df.SPONSOR.apply(lambda x: sponsor.sponsor_full_name(x, verbose=False))
+    df.SPONSOR = df.SPONSOR.apply(format_sponsor)
+  else:
+    cols.remove("SPONSOR")
 
   df.NAME = df.NAME.apply(remove_middle_initial)
   if df.empty:
