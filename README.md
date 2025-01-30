@@ -6,7 +6,7 @@ of the name (or partial name) still result in a match.
 
 ## How to use it?
 
-Add this line to your `~/.bashrc` file on each cluster (Adroit, Della, Stellar, Tiger, Tigressdata and Traverse):
+Add this line to your `~/.bashrc` file on each cluster (Adroit, Della, Stellar, Tiger):
 
 ```bash
 alias name2id='/home/jdh4/bin/name2id'
@@ -48,7 +48,7 @@ $ name2id anatolie spitkosky
 
 ## How does it work?
 
-`getent passwd` is ran on the necessary head nodes (`tigressdata` and others) to capture past and present RC users. This output is combined into a master file which is stored on all of the head nodes and updated three times per day (M-F). `name2id` uses the `fuzzywuzzy` and `python-Levenshtein` packages for fast fuzzy string matching. The top seven most likely results are returned along with their probabilities.
+`getent passwd` is ran on the head nodes to capture past and present RC users. This output is combined into a master file which is stored on all of the head nodes and updated three times per day (M-F). `name2id` uses the `fuzzywuzzy` and `python-Levenshtein` packages for fast fuzzy string matching. The top seven most likely results are returned along with their probabilities.
 
 ## When is it useful?
 
