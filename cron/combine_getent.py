@@ -1,4 +1,4 @@
-#!/usr/licensed/anaconda3/2020.7/bin/python
+#!/usr/licensed/anaconda3/2024.10/bin/python
 
 # The output of "getent passwd" is combined and filtered for the
 # different clusters. Adroit is handled as a special case since
@@ -81,9 +81,8 @@ def extract_name(s):
     # Margaret Martonosi, EE475 TA
     return [s.split(',')[0], None, None]
 
-files = ['tigressdata_getent.txt', 'adroit_getent.txt', 'della_getent.txt', \
-         'perseus_getent.txt', 'tiger_getent.txt', 'traverse_getent.txt', \
-         'stellar-intel_getent.txt']
+files = ['adroit_getent.txt', 'della_getent.txt', \
+         'tiger3_getent.txt', 'stellar-intel_getent.txt']
 
 df = pd.DataFrame()
 for f in files:
