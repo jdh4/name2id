@@ -8,7 +8,7 @@ do
   ssh    jdh4@${cluster}.princeton.edu "getent passwd > /home/jdh4/bin/cron/${cluster}_getent.txt 2>/dev/null"
   scp -q jdh4@${cluster}.princeton.edu:/home/jdh4/bin/cron/${cluster}_getent.txt . 2>/dev/null
 done
-getent passwd > ./tiger_getent.txt 2>/dev/null
+getent passwd > ./della_getent.txt 2>/dev/null
 
 # combine results from each cluster
 /usr/licensed/anaconda3/2024.10/bin/python combine_getent.py 2>/dev/null
